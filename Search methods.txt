@@ -13,7 +13,9 @@ with open('coordinates.csv', 'r') as file:
         city_name, latitude, longitude = row
         city_coordinates[city_name] = (float(latitude), float(longitude))
 
-# Reads Adjacencies.txt file and creates graph for cities that are adjacent
+        
+        
+# Reads Adjacencies.txt file and creates an undirected graph for cities that are adjacent
 adjacency_graph = {}
 with open('Adjacencies.txt', 'r') as file:
     for line in file:
@@ -34,10 +36,10 @@ def haversine(coord1, coord2):
     latitude2, longitude2 = coord2
     radius = 6371  #Earth radius 
 
-    dlat = radians(latitude2 - latitude1)
-    dlon = radians(longitude2 - longitude1)
+    difference_lat = radians(latitude2 - latitude1)
+    difference_long = radians(longitude2 - longitude1)
 
-    a = sin(dlat/2)**2 + cos(radians(latitude1)) * cos(radians(latitude2)) * sin(dlon/2)**2
+    a = sin(difference_lat/2)**2 + cos(radians(latitude1)) * cos(radians(latitude2)) * sin(difference_long/2)**2
     c = 2 * atan2(sqrt(a), sqrt(1-a))
 
     return radius * c
@@ -45,7 +47,7 @@ def haversine(coord1, coord2):
 
 
 
-# Breadth-first search
+# Breadth-first search 
 def bfs(start, end):
     visited = set()
     queue = [(start, [])]
@@ -65,7 +67,7 @@ def bfs(start, end):
 
 
 
-# Depth-first search
+# Depth-first search (goes in depth using stack)
 def dfs(start, end):
     visited = set()
     stack = [(start, [])]
@@ -111,7 +113,7 @@ def dfs_recursive(current, end, path, depth):
 
 
 
-# Best-first search (Greedy search)
+# Best-first search 
 def best_first_search(start, end):
     visited = set()
     heap = [(haversine(city_coordinates[start], city_coordinates[end]), start, [])]
@@ -177,7 +179,7 @@ while True:
     print("5. A* search")
     method = int(input("Please enter method option (1-5): "))
     
-    #star time
+    #start time
     start_time = time.time()
     
     #If input matches any method, calls the method function to calculate and get path. Else
