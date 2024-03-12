@@ -5,4 +5,4 @@ I used jupyter notebook to do this assignment (in python). However, I don't know
 
 
 
-Also, i cant figure out how to do time in python so i may need a response on how to get the execution time of a function
+Also, i cant figure out how to do time in python so i may need a response on how to get the execution time of a search method
